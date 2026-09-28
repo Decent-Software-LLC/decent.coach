@@ -1,0 +1,1426 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <base href="../../">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0d100e">
+    <title>Horseshoe Shooting | Basketball Drills</title>
+    <script>
+      (function () {
+        let preference = "system";
+        try { preference = localStorage.getItem("basketball-drills-theme") || "system"; } catch (error) {}
+        const systemTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        document.documentElement.dataset.theme = preference === "system" ? systemTheme : preference;
+        document.documentElement.dataset.themePreference = preference;
+      }());
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0d100e;
+        --panel: #141815;
+        --panel-2: #1a1f1b;
+        --ink: #f6f3ea;
+        --muted: #9ba19c;
+        --line: rgba(255, 255, 255, 0.11);
+        --lime: #c8ff4d;
+        --accent-rgb: 200, 255, 77;
+        --accent-ink: #11150f;
+        --red: #e35f36;
+        --blue: #2878d0;
+        --neutral: #737b76;
+        --court: #8a4f2b;
+        --topbar-bg: rgba(13, 16, 14, 0.94);
+        --library-bg: #111512;
+        --control-bg: #191e1a;
+        --raised-bg: #222824;
+        --card-bg: rgba(23,27,24,.92);
+        --court-wrap-bg: #121613;
+        --soft-text: #d9dcd8;
+        --copy-text: #aeb3ae;
+        --subtle-text: #939a94;
+        --dim-text: #727972;
+        --hover-bg: rgba(255,255,255,.04);
+        --pill-bg: rgba(255,255,255,.06);
+        --switch-bg: rgba(255,255,255,.035);
+        --marker-text: #aeb4ae;
+        --pill-text: #989e99;
+        --meta-text: #c8ccc8;
+        --label-text: #7f867f;
+        --step-number-text: #cbd0cb;
+        --phase-text: #7c837d;
+        --hover-border: rgba(255,255,255,.22);
+        --card-shadow: 0 24px 70px rgba(0,0,0,.24);
+        --footer-bg: #111512;
+        --footer-text: #d9dcd8;
+        --footer-muted: #9ba19c;
+        --footer-accent: #c8ff4d;
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #f3f5f0;
+        --panel: #ffffff;
+        --panel-2: #e9ede7;
+        --ink: #182019;
+        --muted: #5f6961;
+        --line: rgba(20, 34, 22, 0.15);
+        --lime: #a84f2a;
+        --accent-rgb: 168, 79, 42;
+        --accent-ink: #fffaf5;
+        --topbar-bg: rgba(250, 252, 248, 0.95);
+        --library-bg: #e9ede7;
+        --control-bg: #ffffff;
+        --raised-bg: #dfe5dd;
+        --card-bg: rgba(255,255,255,.96);
+        --court-wrap-bg: #e7ebe5;
+        --soft-text: #313a32;
+        --copy-text: #4e5a50;
+        --subtle-text: #606b62;
+        --dim-text: #68736a;
+        --hover-bg: rgba(17,30,18,.06);
+        --pill-bg: rgba(17,30,18,.07);
+        --switch-bg: rgba(17,30,18,.04);
+        --marker-text: #4f5b51;
+        --pill-text: #58635a;
+        --meta-text: #39443b;
+        --label-text: #5f6a61;
+        --step-number-text: #39443b;
+        --phase-text: #5f6a61;
+        --hover-border: rgba(20,34,22,.26);
+        --card-shadow: 0 22px 55px rgba(32,45,34,.12);
+        --footer-bg: #e3e8e1;
+        --footer-text: #313a32;
+        --footer-muted: #5f6961;
+        --footer-accent: #a84f2a;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      button, input { font: inherit; }
+      button { color: inherit; }
+      [hidden] { display: none !important; }
+
+      .app { display: grid; grid-template-rows: 72px minmax(0, 1fr); height: 100%; }
+      .topbar {
+        position: relative;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 0 24px;
+        border-bottom: 1px solid var(--line);
+        background: var(--topbar-bg);
+        backdrop-filter: blur(18px);
+      }
+      .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+      .brand-mark {
+        display: block;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+      }
+      .brand-mark img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .brand h1 { margin: 0; font-size: 18px; letter-spacing: -0.02em; }
+      .brand p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+      .header-menu { position: relative; }
+      .menu-button {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--control-bg);
+        color: var(--ink);
+        cursor: pointer;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .menu-button:hover, .menu-button[aria-expanded="true"] { border-color: rgba(var(--accent-rgb),.55); color: var(--lime); }
+      .menu-button:focus-visible, .theme-option:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+      .theme-menu {
+        position: absolute;
+        z-index: 20;
+        top: calc(100% + 10px);
+        right: 0;
+        width: 174px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card-bg);
+        box-shadow: var(--card-shadow);
+        backdrop-filter: blur(18px);
+      }
+      .theme-menu[hidden] { display: none; }
+      .theme-menu-label { margin: 0 0 8px; color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+      .theme-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 3px; border: 1px solid var(--line); border-radius: 11px; background: var(--switch-bg); }
+      .theme-option { display: grid; min-width: 0; height: 38px; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+      .theme-option:hover { color: var(--ink); background: var(--hover-bg); }
+      .theme-option[aria-pressed="true"] { background: var(--lime); color: var(--accent-ink); }
+      .system-theme-icon { position: relative; display: inline-flex; }
+      .system-theme-icon .system-gear { position: absolute; right: -6px; bottom: -5px; width: 12px; height: 12px; padding: 1px; border-radius: 50%; background: var(--control-bg); }
+      .theme-option[aria-pressed="true"] .system-gear { background: var(--lime); }
+      .workspace {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        min-height: 0;
+      }
+      .library {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        width: 310px;
+        min-height: 0;
+        border-right: 1px solid var(--line);
+        background: var(--library-bg);
+        overflow: hidden;
+        transition: width 180ms ease;
+      }
+      .library-collapsed .library { width: 76px; }
+      .library-heading { position: relative; padding: 24px 54px 14px 20px; }
+      .library-toggle {
+        position: absolute;
+        top: 22px;
+        right: 14px;
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid var(--lime);
+        border-radius: 10px;
+        background: var(--lime);
+        color: var(--accent-ink);
+        box-shadow: 0 5px 16px rgba(var(--accent-rgb),.28);
+        cursor: pointer;
+      }
+      .library-toggle:hover { filter: brightness(1.08); }
+      .library-toggle:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+      .library-toggle svg { transition: transform 200ms ease; }
+      .library-collapsed .library-toggle svg { transform: rotate(180deg); }
+      .library-collapsed .library-heading { min-height: 74px; padding: 0; }
+      .library-collapsed .library-toggle { top: 20px; right: auto; left: 21px; z-index: 2; }
+      .library-heading > :not(.library-toggle),
+      #drill-library-content { opacity: 1; visibility: visible; transform: translateX(0); transition: opacity 120ms ease, transform 180ms ease, visibility 0s; }
+      .library-collapsed .library-heading > :not(.library-toggle),
+      .library-collapsed #drill-library-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-14px); transition: opacity 100ms ease, transform 160ms ease, visibility 0s linear 160ms; }
+      @media (min-width: 721px) {
+        .library-collapsed .library-heading .eyebrow {
+          position: absolute;
+          top: 72px;
+          left: 50px;
+          margin: 0;
+          opacity: 1;
+          visibility: visible;
+          transform: rotate(90deg);
+          transform-origin: left top;
+          white-space: nowrap;
+          pointer-events: none;
+          transition: opacity 120ms ease 80ms;
+        }
+      }
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--lime);
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+      }
+      .library h2 { margin: 0; font-size: 26px; letter-spacing: -.04em; }
+      .library-heading p:last-child { margin: 7px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+      #drill-library-content { display: grid; grid-template-rows: auto minmax(0, 1fr); min-height: 0; }
+      .search-wrap { position: relative; margin: 0 16px 14px; }
+      .search-wrap svg { position: absolute; top: 50%; left: 14px; color: var(--dim-text); transform: translateY(-50%); }
+      .search {
+        width: 100%;
+        height: 42px;
+        padding: 0 14px 0 40px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        outline: none;
+        background: var(--control-bg);
+        color: var(--ink);
+      }
+      .search::placeholder { color: var(--dim-text); }
+      .search:focus { border-color: rgba(var(--accent-rgb),.7); box-shadow: 0 0 0 3px rgba(var(--accent-rgb),.12); }
+      .drill-list { overflow-y: auto; padding: 0 12px 20px; scrollbar-color: #3b423c transparent; }
+      .source-label {
+        margin: 15px 8px 7px;
+        color: var(--dim-text);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .drill-item {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 32px minmax(0,1fr) auto;
+        align-items: center;
+        gap: 10px;
+        min-height: 54px;
+        padding: 8px 10px;
+        border: 1px solid transparent;
+        border-radius: 13px;
+        background: transparent;
+        text-align: left;
+        text-decoration: none;
+      }
+      .drill-item.upcoming { grid-template-columns: minmax(0,1fr) auto; padding-left: 12px; }
+      .drill-item + .drill-item { margin-top: 3px; }
+      .drill-item:not(:disabled) { cursor: pointer; }
+      .drill-item:not(:disabled):hover { background: var(--hover-bg); }
+      .drill-item.active { border-color: rgba(var(--accent-rgb),.43); background: rgba(var(--accent-rgb),.09); }
+      .drill-number {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border-radius: 9px;
+        background: var(--raised-bg);
+        color: var(--marker-text);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .active .drill-number { background: var(--lime); color: var(--accent-ink); }
+      .drill-title { overflow: hidden; color: var(--soft-text); font-size: 14px; font-weight: 730; line-height: 1.25; text-overflow: ellipsis; }
+      .drill-item:disabled { opacity: .42; }
+      .status-pill {
+        padding: 4px 6px;
+        border-radius: 999px;
+        background: var(--pill-bg);
+        color: var(--pill-text);
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+      }
+      .active .status-pill { background: rgba(var(--accent-rgb),.13); color: var(--lime); }
+      .drill-chevron { display: grid; width: 26px; height: 26px; place-items: center; color: var(--muted); }
+      .drill-item:not(:disabled):hover .drill-chevron, .drill-item.active .drill-chevron { color: var(--lime); }
+      .empty { display: none; padding: 28px 18px; color: var(--muted); font-size: 15px; text-align: center; }
+
+      main {
+        min-width: 0;
+        min-height: 0;
+        overflow-y: auto;
+        background: radial-gradient(circle at 72% 4%, rgba(var(--accent-rgb),.06), transparent 29%), var(--bg);
+      }
+      .lesson { display: grid; grid-template-columns: minmax(290px, 390px) minmax(420px, 1fr); gap: 24px; min-height: 100%; padding: 24px; }
+      .lesson[data-layout="list"] { grid-template-columns: minmax(420px, 680px); justify-content: center; }
+      .lesson[data-layout="court"] { grid-template-columns: minmax(560px, 920px); justify-content: center; }
+      .lesson[data-layout="list"] .court-panel,
+      .lesson[data-layout="court"] .lesson-copy { display: none; }
+      .lesson-copy, .court-panel {
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--card-bg);
+        box-shadow: var(--card-shadow);
+      }
+      .lesson-copy { display: flex; flex-direction: column; padding: 26px; }
+      .lesson-copy h2 { margin: 0; font-size: clamp(28px, 3vw, 42px); line-height: .98; letter-spacing: -.055em; }
+      .summary { margin: 14px 0 18px; color: var(--copy-text); font-size: 15px; line-height: 1.6; }
+      .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+      .meta-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--meta-text);
+        font-size: 12px;
+        font-weight: 750;
+      }
+      .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+      .step-label { margin: 0 0 10px; color: var(--label-text); font-size: 12px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+      .steps { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+      .step-button {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 11px;
+        align-items: start;
+        padding: 11px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: var(--control-bg);
+        text-align: left;
+        cursor: pointer;
+      }
+      .step-button:hover { border-color: var(--hover-border); }
+      .step-button[aria-current="step"] { border-color: rgba(var(--accent-rgb),.55); background: rgba(var(--accent-rgb),.07); }
+      .step-number {
+        display: grid;
+        width: 32px;
+        height: 32px;
+        place-items: center;
+        border-radius: 10px;
+        background: var(--raised-bg);
+        color: var(--step-number-text);
+        font-size: 13px;
+        font-weight: 850;
+      }
+      [aria-current="step"] .step-number { background: var(--lime); color: var(--accent-ink); }
+      .step-copy strong { display: block; margin: 1px 0 3px; font-size: 14px; }
+      .step-copy span { display: block; color: var(--subtle-text); font-size: 13px; line-height: 1.45; }
+      .next-phase {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+        padding-top: 22px;
+        color: var(--phase-text);
+        font-size: 12px;
+      }
+      .next-phase svg { color: var(--lime); }
+
+      .court-panel { display: grid; grid-template-rows: auto minmax(0,1fr) auto; min-height: 560px; overflow: hidden; }
+      .court-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 19px; border-bottom: 1px solid var(--line); }
+      .court-title-group { display: flex; min-width: 0; align-items: center; gap: 11px; }
+      .play-button { display: grid; width: 38px; height: 38px; flex: 0 0 38px; place-items: center; border: 1px solid rgba(var(--accent-rgb),.5); border-radius: 50%; background: rgba(var(--accent-rgb),.1); color: var(--lime); cursor: pointer; }
+      .play-button:hover { background: rgba(var(--accent-rgb),.18); }
+      .play-button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+      .play-button [hidden] { display: none; }
+      .court-header strong { display: block; font-size: 18px; font-weight: 850; line-height: 1.15; }
+      .court-header span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; line-height: 1.25; }
+      .view-switch {
+        display: inline-flex;
+        padding: 3px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--switch-bg);
+      }
+      .view-option {
+        min-height: 28px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .view-option[aria-pressed="true"] { background: var(--lime); color: var(--accent-ink); }
+      .lesson-copy > .view-switch { display: none; }
+      .lesson[data-layout="list"] .lesson-copy > .view-switch { display: inline-flex; align-self: flex-end; margin-bottom: 12px; }
+      .mobile-view-toggle { display: none; }
+      .lesson-copy > .mobile-view-toggle { align-self: flex-end; margin-bottom: 12px; }
+      .court-wrap { position: relative; min-height: 0; padding: 24px; background: var(--court-wrap-bg); }
+      .court-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 410px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.17);
+        border-radius: 16px;
+        background: var(--court);
+        box-shadow: inset 0 0 70px rgba(35,12,3,.22);
+        height: 100%;
+      }
+      .court-stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 38px);
+      }
+      .drill-info-button {
+        position: absolute;
+        right: 14px;
+        top: 14px;
+        z-index: 6;
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid rgba(255,255,255,.55);
+        border-radius: 50%;
+        background: rgba(17,21,18,.78);
+        color: white;
+        font-family: Georgia, serif;
+        font-size: 21px;
+        font-weight: 700;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+      }
+      .drill-info-button:hover { background: var(--lime); color: var(--accent-ink); }
+      .drill-info-button:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+      .drill-info-button[hidden] { display: none; }
+      .drill-info-modal {
+        width: min(520px, calc(100vw - 32px));
+        max-height: calc(100vh - 48px);
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--card-bg);
+        color: var(--ink);
+        box-shadow: 0 24px 80px rgba(0,0,0,.45);
+      }
+      .drill-info-modal::backdrop { background: rgba(7,10,8,.68); backdrop-filter: blur(4px); }
+      .drill-info-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+      .drill-info-header h2 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
+      .drill-info-close { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border: 1px solid var(--line); border-radius: 10px; background: var(--control-bg); color: var(--ink); font-size: 22px; cursor: pointer; }
+      .drill-info-content { display: grid; gap: 22px; padding: 22px; overflow-y: auto; }
+      .drill-info-section h3 { margin: 0 0 10px; color: var(--lime); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+      .drill-info-section ol, .drill-info-section ul { display: grid; gap: 9px; margin: 0; padding-left: 22px; color: var(--copy-text); font-size: 16px; line-height: 1.45; }
+      .player-legend { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+      .player-legend-item { display: inline-flex; align-items: center; gap: 8px; color: var(--copy-text); font-size: 15px; font-weight: 750; }
+      .player-legend-dot { width: 18px; height: 18px; border: 2px solid white; border-radius: 50%; box-shadow: 0 2px 7px rgba(0,0,0,.25); }
+      .player-legend-dot.offense { background: var(--red); }
+      .player-legend-dot.defense { background: var(--blue); }
+      .court-scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+        height: 100%;
+        aspect-ratio: 5 / 3;
+        transform: translateX(var(--court-track-x, 0px));
+        transition: transform var(--animation-duration, 2s) cubic-bezier(.22,.75,.2,1);
+      }
+      .court-scene.no-transition,
+      .court-scene.no-transition .player,
+      .court-scene.no-transition .court-ball { transition: none; }
+      .court-image { width: 100%; height: 100%; display: block; object-fit: contain; padding: 3%; opacity: .94; user-select: none; pointer-events: none; }
+      .court-overlay {
+        position: absolute;
+        z-index: 4;
+        display: block;
+        height: auto;
+        pointer-events: none;
+        user-select: none;
+      }
+      .court-overlay[hidden] { display: none; }
+      .player {
+        position: absolute;
+        z-index: 3;
+        display: grid;
+        width: clamp(30px, 3.6vw, 41px);
+        aspect-ratio: 1;
+        place-items: center;
+        border: 3px solid white;
+        border-radius: 50%;
+        background: var(--red);
+        color: white;
+        box-shadow: 0 8px 20px rgba(33,9,2,.38), 0 0 0 4px rgba(227,95,54,.18);
+        font-size: clamp(15px, 1.5vw, 19px);
+        font-weight: 900;
+        transform: translate(-50%, -50%);
+        transition: left var(--animation-duration, 2s) cubic-bezier(.22,.75,.2,1), top var(--animation-duration, 2s) cubic-bezier(.22,.75,.2,1), background-color .3s ease;
+      }
+      .player[data-team="defense"] { background: var(--blue); box-shadow: 0 8px 20px rgba(3,24,48,.4), 0 0 0 4px rgba(40,120,208,.2); }
+      .player[data-team="neutral"] { background: var(--neutral); box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 0 0 4px rgba(115,123,118,.2); }
+      .player-ball {
+        position: absolute;
+        right: -9px;
+        bottom: -7px;
+        display: grid;
+        width: 20px;
+        height: 20px;
+        place-items: center;
+        border-radius: 50%;
+        background: #111512;
+        font-size: 12px;
+        line-height: 1;
+        box-shadow: 0 3px 9px rgba(0,0,0,.45);
+      }
+      .player[data-callout] { z-index: 6; }
+      .player[data-callout]::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -12px;
+        border: 6px solid transparent;
+        border-top-color: white;
+        transform: translateX(-50%);
+        opacity: 0;
+        animation: callout-blink .45s steps(1, end) 3 forwards;
+        animation-delay: var(--callout-delay, 0s);
+      }
+      .player[data-callout]::after {
+        content: attr(data-callout);
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 10px);
+        min-width: 25px;
+        padding: 4px 8px;
+        border: 2px solid rgba(20, 23, 24, .22);
+        border-radius: 999px;
+        background: white;
+        color: #202426;
+        font-size: 13px;
+        font-weight: 900;
+        line-height: 1;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+        transform: translateX(-50%);
+        opacity: 0;
+        animation: callout-blink .45s steps(1, end) 3 forwards;
+        animation-delay: var(--callout-delay, 0s);
+      }
+      .player[data-callout="2"]::before, .player[data-callout="2"]::after { animation-delay: 0s; }
+      .player[data-callout="1"]::before, .player[data-callout="1"]::after { animation-delay: 1.35s; }
+      .player[data-callout="3"]::before, .player[data-callout="3"]::after { animation-delay: 2.7s; }
+      .player[data-callout="4"]::before, .player[data-callout="4"]::after { animation-delay: 4.05s; }
+      .player[data-callout="5"]::before, .player[data-callout="5"]::after { animation-delay: 5.4s; }
+      .player[data-callout-loop]::before, .player[data-callout-loop]::after {
+        animation: callout-loop 3s steps(1, end) infinite;
+      }
+      @keyframes callout-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+      @keyframes callout-loop { 0%, 15% { opacity: 1; } 16%, 100% { opacity: 0; } }
+      .court-ball {
+        position: absolute;
+        z-index: 4;
+        display: grid;
+        width: 24px;
+        height: 24px;
+        place-items: center;
+        border-radius: 50%;
+        background: #111512;
+        font-size: 14px;
+        box-shadow: 0 3px 9px rgba(0,0,0,.45);
+        transform: translate(45%, 45%);
+        transition: left var(--animation-duration, 2s) cubic-bezier(.22,.75,.2,1), top var(--animation-duration, 2s) cubic-bezier(.22,.75,.2,1);
+      }
+      .court-ball[hidden] { display: none; }
+      .extra-court-ball { z-index: 4; }
+      .player-1 { left: 5%; top: 50%; }
+      .player-2 { left: 5%; top: 29%; }
+      .player-3 { left: 5%; top: 71%; }
+      .start-label { position: absolute; z-index: 2; left: 1.2%; top: 50%; color: rgba(255,255,255,.72); font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
+      .court-scene[data-court-type="half"] .start-label { left: 50%; top: 1.5%; writing-mode: horizontal-tb; transform: translateX(-50%); }
+      .court-scene[data-court-type="welcome"] .start-label { display: none; }
+      .court-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 19px; border-top: 1px solid var(--line); }
+      .step-status { min-width: 0; }
+      .step-status strong { display: block; font-size: 14px; line-height: 1.25; }
+      .step-status span { display: block; margin-top: 4px; color: var(--muted); font-size: 16px; line-height: 1.4; }
+      .next-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 38px;
+        padding: 0 13px;
+        border: 1px solid rgba(var(--accent-rgb),.5);
+        border-radius: 999px;
+        background: rgba(var(--accent-rgb),.1);
+        color: var(--lime);
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .next-button:hover { background: rgba(var(--accent-rgb),.18); }
+
+      .site-footer {
+        padding: 32px 24px 36px;
+        border-top: 1px solid var(--line);
+        background: var(--footer-bg);
+        color: var(--footer-text);
+      }
+      .footer-content { text-align: center; }
+      .footer-basketball {
+        display: block;
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 12px;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 18px rgba(0,0,0,.22)) drop-shadow(0 0 1px var(--footer-accent));
+      }
+      .footer-text { margin: 0 0 17px; color: var(--footer-text); font-size: 15px; line-height: 1.5; }
+      .footer-decent { margin-bottom: 17px; }
+      .footer-decent a {
+        color: var(--footer-accent);
+        font-size: 14px;
+        font-weight: 850;
+        letter-spacing: .01em;
+        text-decoration: none;
+      }
+      .footer-decent a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      .footer-decent a:focus-visible { outline: 2px solid var(--footer-accent); outline-offset: 4px; border-radius: 3px; }
+      .footer-copyright { margin: 0; color: var(--footer-muted); font-size: 12px; }
+
+      @media (max-width: 980px) {
+        .app { height: auto; min-height: 100%; }
+        .library { width: 250px; }
+        .library-collapsed .library { width: 76px; }
+        .lesson { grid-template-columns: 1fr; }
+        .lesson[data-layout="list"], .lesson[data-layout="court"] { grid-template-columns: 1fr; justify-content: stretch; }
+        .lesson[data-layout="both"] .court-panel { order: 1; }
+        .lesson[data-layout="both"] .lesson-copy { order: 2; }
+        .library { max-height: calc(100vh - 72px); position: sticky; top: 0; }
+      }
+      @media (max-width: 720px) {
+        .topbar { padding: 0 16px; }
+        .brand p, .back-link span { display: none; }
+        .workspace { display: block; }
+        .workspace.library-collapsed { display: block; }
+        .library { position: static; width: 100%; max-height: 1000px; border-right: 0; border-bottom: 1px solid var(--line); transition: max-height 180ms ease; }
+        .library-collapsed .library { width: 100%; }
+        .library-collapsed .library { min-height: 58px; max-height: 58px; }
+        .library-collapsed .library-heading { min-height: 58px; }
+        .library-collapsed .library-toggle { top: 12px; right: 16px; left: auto; }
+        .library-collapsed .library-heading .eyebrow {
+          position: absolute;
+          top: 21px;
+          left: 16px;
+          margin: 0;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          white-space: nowrap;
+          pointer-events: none;
+          transition: opacity 120ms ease 80ms;
+        }
+        .drill-list { display: block; max-height: min(58vh, 520px); overflow-x: hidden; overflow-y: auto; padding: 0 16px 16px; }
+        .drill-item { min-width: 0; }
+        .lesson { padding: 14px; gap: 14px; }
+        .lesson[data-mobile-view="list"] .court-panel { display: none; }
+        .lesson[data-mobile-view="court"] .lesson-copy { display: none; }
+        .lesson[data-mobile-view="list"] .lesson-copy,
+        .lesson[data-mobile-view="court"] .court-panel { display: flex; }
+        .lesson[data-mobile-view="court"] .court-panel { display: grid; }
+        .lesson-copy { padding: 21px; }
+        .court-panel { min-height: 510px; }
+        .court-wrap { padding: 14px; }
+        .court-stage { min-height: 360px; }
+        .court-ball { transform: translate(-10%, -10%); }
+        .view-switch,
+        .lesson[data-layout="list"] .lesson-copy > .view-switch { display: none; }
+        .mobile-view-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          min-height: 32px;
+          padding: 0 10px;
+          border: 1px solid rgba(var(--accent-rgb),.4);
+          border-radius: 9px;
+          background: rgba(var(--accent-rgb),.09);
+          color: var(--lime);
+          font-size: 11px;
+          font-weight: 800;
+          cursor: pointer;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><img src="assets/branding/decent-basketball.png" alt=""></div>
+          <div>
+            <h1>Basketball Drills</h1>
+            <p>Learn it. Teach it. Run it.</p>
+          </div>
+        </div>
+        <div class="header-menu" id="header-menu">
+          <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="theme-menu" aria-label="Open appearance menu" title="Appearance">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="theme-menu" id="theme-menu" hidden>
+            <p class="theme-menu-label">Appearance</p>
+            <div class="theme-options" aria-label="Color theme">
+              <button class="theme-option" type="button" data-theme-choice="light" aria-label="Use light theme" title="Light" aria-pressed="false"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+              <button class="theme-option" type="button" data-theme-choice="dark" aria-label="Use dark theme" title="Dark" aria-pressed="false"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+              <button class="theme-option" type="button" data-theme-choice="system" aria-label="Follow system theme" title="System" aria-pressed="false"><span class="system-theme-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><svg class="system-gear" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 1.5h3l.35 1.55 1.34.78 1.52-.47 1.5 2.6-1.17 1.08v1.55l1.17 1.08-1.5 2.6-1.52-.47-1.34.78-.35 1.55h-3l-.35-1.55-1.34-.78-1.52.47-1.5-2.6 1.17-1.08V7.04L1.79 5.96l1.5-2.6 1.52.47 1.34-.78L6.5 1.5Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/><circle cx="8" cy="7.82" r="1.65" stroke="currentColor" stroke-width="1.25"/></svg></span></button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace" id="workspace">
+        <aside class="library" aria-label="Drill library">
+          <div class="library-heading">
+            <button class="library-toggle" id="library-toggle" type="button" aria-expanded="true" aria-controls="drill-library-content" aria-label="Collapse drill library" title="Collapse drill library">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="eyebrow">Drill library</p>
+            <h2>Choose a drill</h2>
+            <p id="library-summary">Three lessons are ready. More guided drills are coming next.</p>
+          </div>
+          <div id="drill-library-content">
+            <label class="search-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="sr-only" hidden>Search drills</span>
+              <input class="search" id="drill-search" type="search" placeholder="Search drills" aria-label="Search drills" autocomplete="off">
+            </label>
+            <div class="drill-list" id="drill-list">
+              <p class="empty" id="empty-state">No drills match that search.</p>
+            </div>
+          </div>
+        </aside>
+
+        <main>
+          <section class="lesson" id="lesson" data-layout="both" data-mobile-view="court" aria-labelledby="lesson-title">
+            <article class="lesson-copy">
+              <div class="view-switch" aria-label="Lesson layout">
+                <button class="view-option" type="button" data-layout="list" aria-pressed="false">List</button>
+                <button class="view-option" type="button" data-layout="court" aria-pressed="false">Court</button>
+                <button class="view-option" type="button" data-layout="both" aria-pressed="true">Both</button>
+              </div>
+              <button class="mobile-view-toggle" type="button" aria-label="Show court view">Court view</button>
+              <p class="eyebrow" id="lesson-categories">Passing · Transition</p>
+              <h2 id="lesson-title">Three-Man<br>Weave</h2>
+              <p class="summary" id="lesson-summary">Three players pass in a weave pattern up the court, following each pass with a hard cut behind the receiver.</p>
+              <div class="meta" id="lesson-meta" aria-label="Drill details">
+                <span class="meta-chip"><span class="meta-dot"></span>3 players</span>
+                <span class="meta-chip">1 basketball</span>
+                <span class="meta-chip">Full court</span>
+              </div>
+
+              <p class="step-label" id="step-label">How to run it</p>
+              <ol class="steps" id="lesson-steps">
+                <li><button class="step-button" type="button" aria-current="step" data-step="1"><span class="step-number">01</span><span class="step-copy"><strong>Start in three lanes</strong><span>Form three lines on the baseline. Player 1 begins in the middle with the ball.</span></span></button></li>
+                <li><button class="step-button" type="button" data-step="2"><span class="step-number">02</span><span class="step-copy"><strong>Pass and cut behind</strong><span>Pass to an outside lane, then sprint behind the player who received the pass.</span></span></button></li>
+                <li><button class="step-button" type="button" data-step="3"><span class="step-number">03</span><span class="step-copy"><strong>Keep the weave moving</strong><span>Repeat the pass-and-cut pattern, leading every runner into open space.</span></span></button></li>
+                <li><button class="step-button" type="button" data-step="4"><span class="step-number">04</span><span class="step-copy"><strong>Finish at the rim</strong><span>The receiver nearest the basket attacks. The other two form a rebounding triangle.</span></span></button></li>
+              </ol>
+            </article>
+
+            <section class="court-panel" id="court-panel" aria-label="Three-Player Weave court setup">
+              <div class="court-header">
+                <div class="court-title-group">
+                  <button class="next-button" id="next-step" type="button" aria-label="Go to next step">
+                    <span id="next-step-label">Next</span>
+                  </button>
+                  <div><strong id="court-drill-title">Three-Player Weave</strong><span id="court-step-title">Step 1: Start in three lanes</span></div>
+                </div>
+                <div class="view-switch" aria-label="Lesson layout">
+                  <button class="view-option" type="button" data-layout="list" aria-pressed="false">List</button>
+                  <button class="view-option" type="button" data-layout="court" aria-pressed="false">Court</button>
+                  <button class="view-option" type="button" data-layout="both" aria-pressed="true">Both</button>
+                </div>
+                <button class="mobile-view-toggle" type="button" aria-label="Show list view">List view</button>
+              </div>
+              <div class="court-wrap">
+                <div class="court-stage" id="court-stage">
+                  <div class="court-scene" id="court-scene">
+                    <img class="court-image" id="court-image" src="assets/courts/basketball-fullcourt.svg" alt="Aerial full basketball court diagram">
+                    <img class="court-overlay" id="court-overlay" alt="" hidden>
+                    <div class="court-ball" id="court-ball" aria-label="Basketball">🏀</div>
+                    <span class="start-label">Baseline start</span>
+                  </div>
+                  <button class="drill-info-button" id="drill-info-button" type="button" aria-label="Show drill variations and points of emphasis" title="Drill details" hidden>i</button>
+                </div>
+              </div>
+              <div class="court-footer">
+                <div class="step-status" aria-live="polite"><strong id="step-status-title">Step 1 of 4</strong><span id="step-status-copy">Form three lines on the baseline. Player 1 begins in the middle with the ball.</span></div>
+                <button class="play-button" id="play-drill" type="button" aria-label="Play drill" title="Play drill">
+                  <svg id="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 7 8 5-8 5V7Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <svg id="pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M9 7v10M15 7v10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+            </section>
+          </section>
+          <footer class="site-footer">
+            <div class="footer-content">
+              <img class="footer-basketball" src="assets/branding/decent-basketball.png" alt="Decent icon over a basketball" width="192" height="192" loading="lazy">
+              <p class="footer-text">Making basketball drills easier to learn, teach, and run.</p>
+              <div class="footer-decent">
+                <a href="https://decentsoftware.llc/" target="_blank" rel="noopener">Decent Software LLC</a>
+              </div>
+              <p class="footer-copyright">© 2026 Decent Software LLC. All rights reserved.</p>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <dialog class="drill-info-modal" id="drill-info-modal" aria-labelledby="drill-info-title">
+      <div class="drill-info-header">
+        <h2 id="drill-info-title">Drill details</h2>
+        <button class="drill-info-close" id="drill-info-close" type="button" aria-label="Close drill details">×</button>
+      </div>
+      <div class="drill-info-content" id="drill-info-content"></div>
+    </dialog>
+
+    <script src="data/catalog.js?v=2"></script>
+    <script src="data/drills/three-man-weave.js?v=5"></script>
+    <script src="data/drills/close-out-drill.js?v=2"></script>
+    <script src="data/drills/triangle-passing.js?v=6"></script>
+    <script src="data/drills/lay-up-and-rebounding-lines.js?v=11"></script>
+    <script src="data/drills/mirror-drills.js"></script>
+    <script src="data/drills/bull-in-the-ring.js"></script>
+    <script src="data/drills/bump-the-cutter.js"></script>
+    <script src="data/drills/five-on-four-plus-one.js"></script>
+    <script src="data/drills/defensive-shuffle-and-pass.js"></script>
+    <script src="data/drills/five-corner-passing.js"></script>
+    <script src="data/drills/full-court-four-line-passing.js"></script>
+    <script src="data/drills/horseshoe-shooting.js"></script>
+    <script src="data/drills/knockout.js"></script>
+    <script src="data/drills/line-dribbling-drills.js"></script>
+    <script src="data/drills/line-running-drills.js"></script>
+    <script src="data/drills/pass-shoot-and-rebound.js"></script>
+    <script src="data/drills/pig-in-the-middle.js"></script>
+    <script src="data/drills/star-drill.js"></script>
+    <script src="data/drills/ten-fingers.js"></script>
+    <script>
+      const sources = window.BASKETBALL_DRILL_CATALOG || [];
+      const appBaseUrl = new URL("./", document.baseURI);
+      const isProductionSite = window.location.hostname === "decent.coach";
+      const drillLibrary = Object.fromEntries(Object.entries(window.BASKETBALL_DRILLS || {}).filter(([, drill]) => !(isProductionSite && drill.localOnly)));
+      const welcomeDrill = {
+        id: "welcome",
+        title: "Welcome Coaches",
+        titleLines: ["Welcome", "Coaches"],
+        categories: ["Decent Coach Drills"],
+        summary: "Decent Coach Drills turns proven basketball exercises into clear, visual lessons. Choose a drill to review its setup, follow each coaching step, and watch every movement unfold on the court.",
+        equipment: { players: 5, basketballs: 1 },
+        court: { type: "welcome", asset: "assets/courts/basketball-fullcourt.svg", aspectRatio: "5 / 3", label: "Full court" },
+        players: [1, 2, 3, 4, 5].map((number) => ({ id: `welcome-${number}`, label: String(number), team: "offense" })),
+        steps: [{
+          title: "Welcome Coaches",
+          description: "Choose a drill from the library to begin a guided lesson.",
+          focus: 50,
+          ball: "welcome-1",
+          ballPosition: [50, 42],
+          positions: { "welcome-1": [50, 20], "welcome-2": [75, 38], "welcome-3": [66, 70], "welcome-4": [34, 70], "welcome-5": [25, 38] },
+          movements: []
+        }]
+      };
+      let activeDrill = welcomeDrill;
+
+      const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
+      const themeMenu = document.querySelector("#theme-menu");
+      const menuButton = document.querySelector("#menu-button");
+      const themeOptions = document.querySelectorAll("[data-theme-choice]");
+
+      function storedThemePreference() {
+        try { return localStorage.getItem("basketball-drills-theme") || "system"; }
+        catch (error) { return "system"; }
+      }
+
+      function applyTheme(preference, persist = false) {
+        const effectiveTheme = preference === "system" ? (themeMedia.matches ? "light" : "dark") : preference;
+        document.documentElement.dataset.theme = effectiveTheme;
+        document.documentElement.dataset.themePreference = preference;
+        document.querySelector('meta[name="theme-color"]').content = effectiveTheme === "light" ? "#f3f5f0" : "#0d100e";
+        themeOptions.forEach((option) => option.setAttribute("aria-pressed", String(option.dataset.themeChoice === preference)));
+        if (persist) {
+          try { localStorage.setItem("basketball-drills-theme", preference); } catch (error) {}
+        }
+      }
+
+      function setThemeMenu(open) {
+        themeMenu.hidden = !open;
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute("aria-label", open ? "Close appearance menu" : "Open appearance menu");
+      }
+
+      menuButton.addEventListener("click", () => setThemeMenu(themeMenu.hidden));
+      themeOptions.forEach((option) => option.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        applyTheme(option.dataset.themeChoice, true);
+        setThemeMenu(false);
+      }));
+      document.addEventListener("click", (event) => {
+        if (!document.querySelector("#header-menu").contains(event.target)) setThemeMenu(false);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setThemeMenu(false);
+      });
+      themeMedia.addEventListener("change", () => {
+        if (storedThemePreference() === "system") applyTheme("system");
+      });
+      applyTheme(storedThemePreference());
+
+      const list = document.querySelector("#drill-list");
+      const search = document.querySelector("#drill-search");
+      const empty = document.querySelector("#empty-state");
+      const readyDrills = new Map(Object.values(drillLibrary).map((drill) => [drill.title, drill]));
+      const readyDrillsById = new Map(Object.values(drillLibrary).map((drill) => [drill.id, drill]));
+      const recentDrillsKey = "basketball-drills-recent";
+      document.querySelector("#library-summary").textContent = `${readyDrills.size} ${readyDrills.size === 1 ? "lesson is" : "lessons are"} ready. More guided drills are coming next.`;
+      const catalogEntries = [];
+      const catalogTitles = new Set();
+      sources.forEach((source) => source.drills.forEach((title) => {
+        const key = title.toLowerCase();
+        if (catalogTitles.has(key)) return;
+        catalogTitles.add(key);
+        catalogEntries.push({ title, source: source.label, number: catalogEntries.length + 1 });
+      }));
+      const workspace = document.querySelector("#workspace");
+      const libraryToggle = document.querySelector("#library-toggle");
+
+      function setLibraryCollapsed(collapsed) {
+        workspace.classList.toggle("library-collapsed", collapsed);
+        libraryToggle.setAttribute("aria-expanded", String(!collapsed));
+        libraryToggle.setAttribute("aria-label", collapsed ? "Expand drill library" : "Collapse drill library");
+        libraryToggle.title = collapsed ? "Expand drill library" : "Collapse drill library";
+      }
+
+      libraryToggle.addEventListener("click", () => setLibraryCollapsed(!workspace.classList.contains("library-collapsed")));
+
+      function storedRecentDrills() {
+        try {
+          const stored = JSON.parse(localStorage.getItem(recentDrillsKey) || "[]");
+          return Array.isArray(stored) ? stored.filter((id) => readyDrillsById.has(id)).slice(0, 2) : [];
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function rememberDrill(drillId) {
+        const recent = [drillId, ...storedRecentDrills().filter((id) => id !== drillId)].slice(0, 2);
+        try { localStorage.setItem(recentDrillsKey, JSON.stringify(recent)); } catch (error) {}
+      }
+
+      function renderDrills(query = "") {
+        list.querySelectorAll(":scope > :not(#empty-state)").forEach((node) => node.remove());
+        const needle = query.trim().toLowerCase();
+        const matches = catalogEntries.filter(({ title }) => title.toLowerCase().includes(needle));
+        const readyEntries = matches.filter(({ title }) => readyDrills.has(title));
+        const upcomingEntries = matches.filter(({ title }) => !readyDrills.has(title));
+        const recentEntries = storedRecentDrills().map((id) => {
+          const drill = readyDrillsById.get(id);
+          return catalogEntries.find(({ title }) => title === drill.title);
+        }).filter((entry) => entry && entry.title.toLowerCase().includes(needle));
+
+        function appendLabel(text) {
+          const label = document.createElement("p");
+          label.className = "source-label";
+          label.textContent = text;
+          list.appendChild(label);
+        }
+
+        function appendEntry({ title, number }, displayNumber = String(number).padStart(2, "0")) {
+          const drill = readyDrills.get(title);
+          const selected = drill?.id === activeDrill.id;
+          const button = document.createElement(drill ? "a" : "button");
+          if (drill) button.href = new URL(`drills/${drill.id}/`, appBaseUrl).href;
+          else button.type = "button";
+          button.className = `drill-item${selected ? " active" : ""}${drill ? "" : " upcoming"}`;
+          button.disabled = !drill;
+          button.setAttribute("aria-label", drill ? `${title}, ${selected ? "selected" : "ready"}` : `${title}, coming soon`);
+          if (selected) button.setAttribute("aria-current", "true");
+          const trailing = drill
+            ? '<span class="drill-chevron" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
+            : '<span class="status-pill">Soon</span>';
+          button.innerHTML = `${drill ? `<span class="drill-number">${displayNumber}</span>` : ""}<span class="drill-title">${title}</span>${trailing}`;
+          if (drill) button.addEventListener("click", (event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            selectDrill(drill.id);
+          });
+          list.appendChild(button);
+        }
+
+        if (recentEntries.length) {
+          appendLabel("Recent");
+          recentEntries.forEach((entry, index) => appendEntry(entry, String(index + 1)));
+        }
+
+        if (readyEntries.length) {
+          appendLabel("Drills");
+          readyEntries.forEach((entry, index) => appendEntry(entry, String(index + 1)));
+        }
+
+        if (upcomingEntries.length) {
+          appendLabel("Coming Soon");
+          upcomingEntries.forEach(appendEntry);
+        }
+
+        empty.style.display = matches.length ? "none" : "block";
+      }
+
+      search.addEventListener("input", () => renderDrills(search.value));
+
+      let stepFrames = activeDrill.steps;
+      const courtStage = document.querySelector("#court-stage");
+      const courtScene = document.querySelector("#court-scene");
+      const courtBall = document.querySelector("#court-ball");
+      const courtOverlay = document.querySelector("#court-overlay");
+      const drillInfoButton = document.querySelector("#drill-info-button");
+      const drillInfoModal = document.querySelector("#drill-info-modal");
+      const drillInfoTitle = document.querySelector("#drill-info-title");
+      const drillInfoContent = document.querySelector("#drill-info-content");
+      const drillInfoClose = document.querySelector("#drill-info-close");
+      const playDrillButton = document.querySelector("#play-drill");
+      const playIcon = document.querySelector("#play-icon");
+      const pauseIcon = document.querySelector("#pause-icon");
+      let currentStep = 1;
+      let teamChangeTimer;
+      let playbackTimer;
+      let isPlaying = false;
+      let welcomeAnimations = [];
+
+      function stopWelcomeAnimation() {
+        welcomeAnimations.forEach((animation) => animation.cancel());
+        welcomeAnimations = [];
+      }
+
+      function startWelcomeAnimation() {
+        stopWelcomeAnimation();
+        if (activeDrill.id !== "welcome") return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const circle = [
+          [50, 20], [65, 25], [75, 38], [74, 55], [66, 70], [50, 77],
+          [34, 70], [26, 55], [25, 38], [35, 25], [50, 20]
+        ];
+        document.querySelectorAll('.player[data-player-id^="welcome-"]').forEach((player, index) => {
+          const animation = player.animate(circle.map(([left, top], point) => ({ left: `${left}%`, top: `${top}%`, offset: point / (circle.length - 1) })), {
+            duration: 8000,
+            delay: index * -1600,
+            iterations: Infinity,
+            easing: "linear"
+          });
+          welcomeAnimations.push(animation);
+        });
+        const ballAnimation = courtBall.animate([
+          { left: "50%", top: "39%", offset: 0 },
+          { left: "62%", top: "60%", offset: .333 },
+          { left: "38%", top: "60%", offset: .666 },
+          { left: "50%", top: "39%", offset: 1 }
+        ], { duration: 3600, iterations: Infinity, easing: "linear" });
+        welcomeAnimations.push(ballAnimation);
+      }
+
+      function updatePlaybackButton() {
+        playIcon.hidden = isPlaying;
+        pauseIcon.hidden = !isPlaying;
+        playDrillButton.setAttribute("aria-label", isPlaying ? "Pause drill" : "Play drill");
+        playDrillButton.title = isPlaying ? "Pause drill" : "Play drill";
+      }
+
+      function stopPlayback() {
+        window.clearTimeout(playbackTimer);
+        isPlaying = false;
+        updatePlaybackButton();
+      }
+
+      function finishPlayback() {
+        window.clearTimeout(playbackTimer);
+        isPlaying = false;
+        courtScene.classList.add("no-transition");
+        selectStep(1, true);
+        requestAnimationFrame(() => courtScene.classList.remove("no-transition"));
+        updatePlaybackButton();
+      }
+
+      function advancePlayback() {
+        if (!isPlaying) return;
+        if (currentStep >= stepFrames.length) {
+          finishPlayback();
+          return;
+        }
+        selectStep(currentStep + 1, true);
+        playbackTimer = window.setTimeout(advancePlayback, stepFrames[currentStep - 1].duration || 2000);
+      }
+
+      function startPlayback() {
+        if (isPlaying) return;
+        isPlaying = true;
+        updatePlaybackButton();
+        advancePlayback();
+      }
+
+      function renderLesson(drill) {
+        const isWelcome = drill.id === "welcome";
+        document.querySelector("#lesson-categories").textContent = drill.categories.join(" · ");
+        document.querySelector("#lesson-title").innerHTML = (drill.titleLines || [drill.title]).join("<br>");
+        document.querySelector("#lesson-summary").textContent = drill.summary;
+        document.querySelector("#court-drill-title").textContent = drill.title;
+        document.querySelector("#court-panel").setAttribute("aria-label", `${drill.title} court setup`);
+
+        document.querySelector("#lesson-meta").hidden = isWelcome;
+        document.querySelector("#step-label").hidden = isWelcome;
+        document.querySelector("#lesson-steps").hidden = isWelcome;
+        document.querySelector("#next-step").hidden = isWelcome;
+        playDrillButton.hidden = isWelcome;
+
+        const playerLabel = drill.equipment.playersLabel || `${drill.equipment.players} ${drill.equipment.players === 1 ? "player" : "players"}`;
+        const ballLabel = `${drill.equipment.basketballs} ${drill.equipment.basketballs === 1 ? "basketball" : "basketballs"}`;
+        document.querySelector("#lesson-meta").innerHTML = `<span class="meta-chip"><span class="meta-dot"></span>${playerLabel}</span><span class="meta-chip">${ballLabel}</span><span class="meta-chip">${drill.court.label}</span>`;
+
+        document.querySelector("#lesson-steps").innerHTML = drill.steps.map((step, index) => `<li><button class="step-button" type="button"${index === 0 ? ' aria-current="step"' : ""} data-step="${index + 1}"><span class="step-number">${String(index + 1).padStart(2, "0")}</span><span class="step-copy"><strong>${step.title}</strong><span>${step.description}</span></span></button></li>`).join("");
+
+        courtScene.querySelectorAll(".player, .extra-court-ball").forEach((player) => player.remove());
+        drill.players.forEach((player) => {
+          const marker = document.createElement("div");
+          marker.className = "player";
+          marker.dataset.playerId = player.id;
+          marker.dataset.team = player.team;
+          marker.dataset.label = player.label;
+          marker.setAttribute("aria-label", `${player.team} player ${player.label}`);
+          marker.textContent = player.label;
+          if (drill.playerBalls?.includes(player.id)) {
+            const playerBall = document.createElement("span");
+            playerBall.className = "player-ball";
+            playerBall.setAttribute("aria-hidden", "true");
+            playerBall.textContent = "🏀";
+            marker.appendChild(playerBall);
+          }
+          courtScene.insertBefore(marker, courtBall);
+        });
+        (drill.extraBallIds || []).forEach((ballId) => {
+          const extraBall = document.createElement("div");
+          extraBall.className = "court-ball extra-court-ball";
+          extraBall.dataset.extraBallId = ballId;
+          extraBall.setAttribute("aria-label", "Additional basketball");
+          extraBall.textContent = "🏀";
+          courtScene.insertBefore(extraBall, courtBall);
+        });
+
+        const courtImage = document.querySelector("#court-image");
+        courtImage.src = drill.court.asset;
+        courtImage.alt = `Aerial ${drill.court.label.toLowerCase()} basketball court diagram`;
+        const overlay = drill.court.overlay;
+        courtOverlay.hidden = !overlay;
+        if (overlay) {
+          courtOverlay.src = overlay.asset;
+          courtOverlay.alt = overlay.alt || "Aerial basketball hoop and backboard";
+          courtOverlay.style.left = `${overlay.left}%`;
+          courtOverlay.style.top = `${overlay.top}%`;
+          courtOverlay.style.width = `${overlay.width}%`;
+          courtOverlay.style.transform = `rotate(${overlay.rotation || 0}deg)`;
+        }
+        courtScene.style.aspectRatio = drill.court.aspectRatio;
+        courtScene.dataset.courtType = drill.court.type;
+        document.querySelector("#step-status-title").textContent = `Step 1 of ${drill.steps.length}`;
+        document.querySelector("#step-status-copy").textContent = drill.steps[0].description;
+        document.querySelector("#court-step-title").textContent = isWelcome ? drill.steps[0].title : `Step 1: ${drill.steps[0].title}`;
+        document.querySelector("#next-step").setAttribute("aria-label", "Go to step 2");
+        document.querySelector("#next-step-label").textContent = "Next";
+        const variations = drill.variations || [];
+        const points = drill.pointsOfEmphasis || [];
+        drillInfoButton.hidden = isWelcome || (!variations.length && !points.length);
+        if (isWelcome) {
+          document.querySelector("#step-status-title").textContent = "Explore the drill library";
+          document.querySelector("#court-drill-title").textContent = "Decent Coach Drills";
+        }
+        drillInfoTitle.textContent = `${drill.title} details`;
+        drillInfoContent.innerHTML = `${variations.length ? `<section class="drill-info-section"><h3>Variations</h3><ol>${variations.map((item) => `<li>${item}</li>`).join("")}</ol></section>` : ""}${points.length ? `<section class="drill-info-section"><h3>Points of Emphasis</h3><ul>${points.map((item) => `<li>${item}</li>`).join("")}</ul></section>` : ""}<section class="drill-info-section"><h3>Player Legend</h3><div class="player-legend"><span class="player-legend-item"><span class="player-legend-dot offense" aria-hidden="true"></span>Red: Offense</span><span class="player-legend-item"><span class="player-legend-dot defense" aria-hidden="true"></span>Blue: Defense</span></div></section>`;
+      }
+
+      function bindStepButtons() {
+        document.querySelectorAll(".step-button").forEach((button) => {
+          button.addEventListener("click", () => selectStep(Number(button.dataset.step)));
+        });
+      }
+
+      function selectDrill(drillId) {
+        if (!drillLibrary[drillId]) return;
+        setLibraryCollapsed(true);
+        rememberDrill(drillId);
+        if (activeDrill.id === drillId) return;
+        stopWelcomeAnimation();
+        stopPlayback();
+        activeDrill = drillLibrary[drillId];
+        stepFrames = activeDrill.steps;
+        currentStep = 1;
+        courtScene.classList.add("no-transition");
+        renderLesson(activeDrill);
+        bindStepButtons();
+        animateCourt(1);
+        requestAnimationFrame(() => courtScene.classList.remove("no-transition"));
+        renderDrills(search.value);
+        const drillUrl = new URL(`drills/${drillId}/`, appBaseUrl);
+        if (window.location.href !== drillUrl.href) window.history.pushState({ drillId }, "", drillUrl);
+      }
+
+      function drillIdFromUrl() {
+        const match = window.location.pathname.match(/\/drills\/([^/]+)(?:\/index\.html|\/)?$/);
+        return match ? decodeURIComponent(match[1]) : null;
+      }
+
+      function trackCourt(focusPercent) {
+        const sceneWidth = courtScene.getBoundingClientRect().width;
+        const stageWidth = courtStage.getBoundingClientRect().width;
+        if (sceneWidth <= stageWidth) {
+          courtScene.style.setProperty("--court-track-x", `${(stageWidth - sceneWidth) / 2}px`);
+          return;
+        }
+        const desired = (stageWidth / 2) - (sceneWidth * focusPercent / 100);
+        const minimum = Math.min(0, stageWidth - sceneWidth);
+        courtScene.style.setProperty("--court-track-x", `${Math.max(minimum, Math.min(0, desired))}px`);
+      }
+
+      function animateCourt(step, previousStep = step) {
+        const frame = stepFrames[step - 1];
+        const previousFrame = stepFrames[previousStep - 1] || frame;
+        const duration = frame.duration || 2000;
+        const sequentialForward = previousStep === step - 1;
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.clearTimeout(teamChangeTimer);
+        courtBall.getAnimations().forEach((animation) => animation.cancel());
+        document.querySelectorAll(".extra-court-ball").forEach((ball) => ball.getAnimations().forEach((animation) => animation.cancel()));
+        courtBall.style.zIndex = "5";
+        courtScene.style.setProperty("--animation-duration", `${duration}ms`);
+        document.querySelectorAll(".player").forEach((player) => {
+          player.getAnimations().forEach((animation) => animation.cancel());
+          const [left, top] = frame.positions[player.dataset.playerId];
+          player.style.left = `${left}%`;
+          player.style.top = `${top}%`;
+          const callout = frame.callouts && frame.callouts[player.dataset.playerId];
+          if (callout) player.dataset.callout = callout;
+          else delete player.dataset.callout;
+          const calloutDelay = frame.calloutDelays && frame.calloutDelays[player.dataset.playerId];
+          if (calloutDelay) player.style.setProperty("--callout-delay", `${calloutDelay}ms`);
+          else player.style.removeProperty("--callout-delay");
+          const loopingCallout = frame.loopingCallouts && frame.loopingCallouts.includes(player.dataset.playerId);
+          if (loopingCallout) player.dataset.calloutLoop = "";
+          else delete player.dataset.calloutLoop;
+        });
+        if (sequentialForward && !reducedMotion) {
+          frame.movements.filter((movement) => movement.path === "curve-behind").forEach((movement) => {
+            const player = document.querySelector(`[data-player-id="${movement.player}"]`);
+            player.animate([
+              { transform: "translate(-50%, -50%) translateX(0)" },
+              { transform: `translate(-50%, -50%) translateX(${movement.offsetX || -58}px)`, offset: .52 },
+              { transform: "translate(-50%, -50%) translateX(0)" }
+            ], { duration, easing: "cubic-bezier(.22,.75,.2,1)" });
+          });
+          frame.movements.filter((movement) => movement.path === "curve-via").forEach((movement) => {
+            const player = document.querySelector(`[data-player-id="${movement.player}"]`);
+            player.animate(movement.points.map((point) => ({
+              left: `${point.position[0]}%`,
+              top: `${point.position[1]}%`,
+              transform: "translate(-50%, -50%)",
+              offset: point.offset
+            })), { duration, easing: "linear" });
+          });
+          frame.movements.filter((movement) => movement.path === "staged").forEach((movement) => {
+            const player = document.querySelector(`[data-player-id="${movement.player}"]`);
+            const [startLeft, startTop] = previousFrame.positions[movement.player];
+            const [endLeft, endTop] = frame.positions[movement.player];
+            player.animate([
+              { left: `${startLeft}%`, top: `${startTop}%`, offset: 0 },
+              { left: `${startLeft}%`, top: `${startTop}%`, offset: movement.startOffset },
+              { left: `${endLeft}%`, top: `${endTop}%`, offset: 1 }
+            ], { duration, easing: "cubic-bezier(.22,.75,.2,1)" });
+          });
+          if (frame.ballArrival && frame.ball) {
+            const receiver = document.querySelector(`[data-player-id="${frame.ball}"]`);
+            const [startLeft, startTop] = previousFrame.positions[frame.ball];
+            const [endLeft, endTop] = frame.positions[frame.ball];
+            receiver.animate([
+              { left: `${startLeft}%`, top: `${startTop}%`, offset: 0 },
+              { left: `${endLeft}%`, top: `${endTop}%`, offset: frame.ballArrival },
+              { left: `${endLeft}%`, top: `${endTop}%`, offset: 1 }
+            ], { duration, easing: "cubic-bezier(.22,.75,.2,1)" });
+          }
+        }
+        const teams = frame.teams || Object.fromEntries(activeDrill.players.map((player) => [player.id, player.team]));
+        const applyTeams = () => document.querySelectorAll(".player").forEach((player) => {
+          const team = teams[player.dataset.playerId];
+          player.dataset.team = team;
+          player.setAttribute("aria-label", `${team} player ${player.dataset.label}`);
+        });
+        if (sequentialForward && frame.teamChangeDelay && !reducedMotion) teamChangeTimer = window.setTimeout(applyTeams, frame.teamChangeDelay);
+        else applyTeams();
+        courtBall.hidden = !frame.ball || activeDrill.playerBalls?.includes(frame.ball);
+        if (frame.ball) {
+          const [ballLeft, ballTop] = frame.ballPosition || frame.positions[frame.ball];
+          courtBall.style.left = `${ballLeft}%`;
+          courtBall.style.top = `${ballTop}%`;
+          courtBall.setAttribute("aria-label", `Basketball moving to player ${frame.ball}`);
+          if (sequentialForward && frame.ballPath && !reducedMotion) {
+            courtBall.animate(frame.ballPath.map((point) => ({
+              left: `${point.position[0]}%`,
+              top: `${point.position[1]}%`,
+              zIndex: point.layer === "under" ? 2 : 5,
+              offset: point.offset
+            })), { duration, easing: "linear" });
+          } else if (sequentialForward && frame.ballArrival && previousFrame.ball && !reducedMotion) {
+            const [startLeft, startTop] = previousFrame.ballPosition || previousFrame.positions[previousFrame.ball];
+            courtBall.animate([
+              { left: `${startLeft}%`, top: `${startTop}%`, offset: 0 },
+              { left: `${ballLeft}%`, top: `${ballTop}%`, offset: frame.ballArrival },
+              { left: `${ballLeft}%`, top: `${ballTop}%`, offset: 1 }
+            ], { duration, easing: "cubic-bezier(.22,.75,.2,1)" });
+          }
+        }
+        document.querySelectorAll(".extra-court-ball").forEach((extraBall) => {
+          const extraFrame = frame.extraBalls && frame.extraBalls[extraBall.dataset.extraBallId];
+          extraBall.hidden = !extraFrame;
+          if (!extraFrame) return;
+          extraBall.style.left = `${extraFrame.position[0]}%`;
+          extraBall.style.top = `${extraFrame.position[1]}%`;
+          if (sequentialForward && extraFrame.path && !reducedMotion) {
+            extraBall.animate(extraFrame.path.map((point) => ({
+              left: `${point.position[0]}%`,
+              top: `${point.position[1]}%`,
+              offset: point.offset
+            })), { duration, easing: "linear" });
+          }
+        });
+        trackCourt(frame.focus);
+      }
+
+      function selectStep(step, fromPlayback = false) {
+        if (!fromPlayback) stopPlayback();
+        const previousStep = currentStep;
+        currentStep = step;
+        document.querySelectorAll(".step-button").forEach((item) => {
+          if (Number(item.dataset.step) === step) item.setAttribute("aria-current", "step");
+          else item.removeAttribute("aria-current");
+        });
+        document.querySelector("#step-status-title").textContent = `Step ${step} of ${stepFrames.length}`;
+        document.querySelector("#step-status-copy").textContent = stepFrames[step - 1].description;
+        document.querySelector("#court-step-title").textContent = `Step ${step}: ${stepFrames[step - 1].title}`;
+        document.querySelector("#next-step").setAttribute("aria-label", step === stepFrames.length ? "Return to first step" : `Go to step ${step + 1}`);
+        document.querySelector("#next-step-label").textContent = step === stepFrames.length ? "Restart" : "Next";
+        animateCourt(step, previousStep);
+      }
+
+      renderLesson(activeDrill);
+      bindStepButtons();
+      playDrillButton.addEventListener("click", () => isPlaying ? stopPlayback() : startPlayback());
+      document.querySelector("#next-step").addEventListener("click", () => selectStep(currentStep === stepFrames.length ? 1 : currentStep + 1));
+      drillInfoButton.addEventListener("click", () => drillInfoModal.showModal());
+      drillInfoClose.addEventListener("click", () => drillInfoModal.close());
+      drillInfoModal.addEventListener("click", (event) => { if (event.target === drillInfoModal) drillInfoModal.close(); });
+
+      const lesson = document.querySelector("#lesson");
+      document.querySelectorAll(".view-option").forEach((button) => {
+        button.addEventListener("click", () => {
+          lesson.dataset.layout = button.dataset.layout;
+          document.querySelectorAll(".view-option").forEach((option) => option.setAttribute("aria-pressed", String(option.dataset.layout === button.dataset.layout)));
+          requestAnimationFrame(() => trackCourt(stepFrames[currentStep - 1].focus));
+        });
+      });
+      document.querySelectorAll(".mobile-view-toggle").forEach((button) => button.addEventListener("click", () => {
+        const showCourt = lesson.dataset.mobileView === "list";
+        lesson.dataset.mobileView = showCourt ? "court" : "list";
+        document.querySelectorAll(".mobile-view-toggle").forEach((toggle) => {
+          toggle.textContent = showCourt ? "List view" : "Court view";
+          toggle.setAttribute("aria-label", showCourt ? "Show list view" : "Show court view");
+        });
+        if (showCourt) requestAnimationFrame(() => trackCourt(stepFrames[currentStep - 1].focus));
+      }));
+
+      courtScene.classList.add("no-transition");
+      animateCourt(1);
+      requestAnimationFrame(() => {
+        courtScene.classList.remove("no-transition");
+        if (activeDrill.id === "welcome") startWelcomeAnimation();
+      });
+      window.addEventListener("resize", () => trackCourt(stepFrames[currentStep - 1].focus));
+
+      renderDrills();
+      const routedDrillId = drillIdFromUrl();
+      if (routedDrillId && drillLibrary[routedDrillId]) selectDrill(routedDrillId);
+      window.addEventListener("popstate", () => {
+        const drillId = drillIdFromUrl();
+        if (drillId && drillLibrary[drillId] && drillId !== activeDrill.id) selectDrill(drillId);
+      });
+    </script>
+  </body>
+</html>

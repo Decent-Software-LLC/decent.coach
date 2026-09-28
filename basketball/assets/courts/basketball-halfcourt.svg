@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1090.86 912.61">
+  <!-- Generator: Adobe Illustrator 29.8.10, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        stroke-dasharray: 11.49 11.49;
+      }
+
+      .st0, .st1 {
+        stroke-width: 7.66px;
+      }
+
+      .st0, .st1, .st2 {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-miterlimit: 7.66;
+      }
+
+      .st2 {
+        stroke-width: 5.74px;
+      }
+    </style>
+  </defs>
+  <polyline class="st1" points="105.01 912.61 105.01 50.91 985.86 50.91 985.86 912.61"/>
+  <path class="st1" d="M909.26,50.91v268.09c0,200.94-162.89,363.83-363.83,363.83s-363.83-162.89-363.83-363.83V50.91"/>
+  <rect class="st1" x="363.51" y="79.64" width="363.83" height="306.38" transform="translate(778.25 -312.6) rotate(90)"/>
+  <path class="st1" d="M698.62,414.74c0,84.61-68.59,153.19-153.19,153.19s-153.19-68.59-153.19-153.19"/>
+  <path class="st0" d="M698.62,414.74c0-84.61-68.59-153.19-153.19-153.19s-153.19,68.59-153.19,153.19"/>
+  <line class="st2" x1="698.62" y1="184.95" x2="713.94" y2="184.95"/>
+  <line class="st2" x1="698.62" y1="251.97" x2="713.94" y2="251.97"/>
+  <line class="st2" x1="698.62" y1="309.42" x2="713.94" y2="309.42"/>
+  <line class="st2" x1="698.62" y1="366.87" x2="713.94" y2="366.87"/>
+  <line class="st2" x1="392.24" y1="184.95" x2="376.92" y2="184.95"/>
+  <line class="st2" x1="392.24" y1="251.97" x2="376.92" y2="251.97"/>
+  <line class="st2" x1="392.24" y1="309.42" x2="376.92" y2="309.42"/>
+  <line class="st2" x1="392.24" y1="366.87" x2="376.92" y2="366.87"/>
+  <path class="st2" d="M622.03,127.5c0,42.3-34.29,76.6-76.6,76.6s-76.6-34.29-76.6-76.6"/>
+</svg>
