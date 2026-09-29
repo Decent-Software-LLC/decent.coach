@@ -889,7 +889,7 @@
           description: "Choose a drill from the library to begin a guided lesson.",
           focus: 50,
           ball: "welcome-1",
-          ballPosition: [50, 42],
+          ballPosition: [40, 40],
           positions: { "welcome-1": [50, 20], "welcome-2": [75, 38], "welcome-3": [66, 70], "welcome-4": [34, 70], "welcome-5": [25, 38] },
           movements: []
         }]
@@ -969,7 +969,7 @@
 
       libraryToggle.addEventListener("click", () => setLibraryCollapsed(!workspace.classList.contains("library-collapsed")));
       library.addEventListener("click", (event) => {
-        if (event.target.closest("#library-toggle")) return;
+        if (event.target.closest("button, a, input, label")) return;
         if (workspace.classList.contains("library-collapsed")) setLibraryCollapsed(false);
       });
 
@@ -1050,6 +1050,7 @@
       let stepFrames = activeDrill.steps;
       const courtStage = document.querySelector("#court-stage");
       const courtScene = document.querySelector("#court-scene");
+      const courtImage = document.querySelector("#court-image");
       const courtBall = document.querySelector("#court-ball");
       const courtOverlay = document.querySelector("#court-overlay");
       const drillInfoButton = document.querySelector("#drill-info-button");
@@ -1065,6 +1066,7 @@
       let playbackTimer;
       let isPlaying = false;
       let welcomeAnimations = [];
+      let courtImageRequest = 0;
 
       function stopWelcomeAnimation() {
         welcomeAnimations.forEach((animation) => animation.cancel());
@@ -1089,12 +1091,44 @@
           welcomeAnimations.push(animation);
         });
         const ballAnimation = courtBall.animate([
-          { left: "50%", top: "39%", offset: 0 },
-          { left: "62%", top: "60%", offset: .333 },
-          { left: "38%", top: "60%", offset: .666 },
-          { left: "50%", top: "39%", offset: 1 }
-        ], { duration: 3600, iterations: Infinity, easing: "linear" });
+          { left: "40%", top: "40%", offset: 0 },
+          { left: "60%", top: "40%", offset: .25 },
+          { left: "60%", top: "60%", offset: .5 },
+          { left: "40%", top: "60%", offset: .75 },
+          { left: "40%", top: "40%", offset: 1 }
+        ], { duration: 4000, iterations: Infinity, easing: "linear" });
         welcomeAnimations.push(ballAnimation);
+      }
+
+      function loadCourtImage(drill) {
+        const request = ++courtImageRequest;
+        const assetUrl = new URL(drill.court.asset, document.baseURI).href;
+        const alt = `Aerial ${drill.court.label.toLowerCase()} basketball court diagram`;
+        courtImage.setAttribute("aria-busy", "true");
+
+        const applyImage = (url) => {
+          if (request !== courtImageRequest) return;
+          courtImage.src = url;
+          courtImage.alt = alt;
+          courtImage.dataset.courtAsset = drill.court.asset;
+          courtImage.removeAttribute("aria-busy");
+        };
+
+        const retryImage = () => {
+          if (request !== courtImageRequest) return;
+          const retry = new Image();
+          retry.addEventListener("load", () => applyImage(retry.src), { once: true });
+          retry.addEventListener("error", () => {
+            if (request === courtImageRequest) courtImage.removeAttribute("aria-busy");
+          }, { once: true });
+          const separator = assetUrl.includes("?") ? "&" : "?";
+          retry.src = `${assetUrl}${separator}retry=${request}`;
+        };
+
+        const preload = new Image();
+        preload.addEventListener("load", () => applyImage(assetUrl), { once: true });
+        preload.addEventListener("error", retryImage, { once: true });
+        preload.src = assetUrl;
       }
 
       function updatePlaybackButton() {
@@ -1183,9 +1217,7 @@
           courtScene.insertBefore(extraBall, courtBall);
         });
 
-        const courtImage = document.querySelector("#court-image");
-        courtImage.src = drill.court.asset;
-        courtImage.alt = `Aerial ${drill.court.label.toLowerCase()} basketball court diagram`;
+        loadCourtImage(drill);
         const overlay = drill.court.overlay;
         courtOverlay.hidden = !overlay;
         if (overlay) {
@@ -1224,7 +1256,10 @@
         if (!drillLibrary[drillId]) return;
         setLibraryCollapsed(true);
         rememberDrill(drillId);
-        if (activeDrill.id === drillId) return;
+        if (activeDrill.id === drillId) {
+          centerCourtAfterLayout();
+          return;
+        }
         stopWelcomeAnimation();
         stopPlayback();
         activeDrill = drillLibrary[drillId];
@@ -1234,6 +1269,7 @@
         renderLesson(activeDrill);
         bindStepButtons();
         animateCourt(1);
+        centerCourtAfterLayout();
         requestAnimationFrame(() => courtScene.classList.remove("no-transition"));
         renderDrills(search.value);
         const drillUrl = new URL(`drills/${drillId}/`, appBaseUrl);
@@ -1255,6 +1291,12 @@
         const desired = (stageWidth / 2) - (sceneWidth * focusPercent / 100);
         const minimum = Math.min(0, stageWidth - sceneWidth);
         courtScene.style.setProperty("--court-track-x", `${Math.max(minimum, Math.min(0, desired))}px`);
+      }
+
+      function centerCourtAfterLayout() {
+        const centerCourt = () => trackCourt(50);
+        requestAnimationFrame(() => requestAnimationFrame(centerCourt));
+        window.setTimeout(centerCourt, 220);
       }
 
       function animateCourt(step, previousStep = step) {
