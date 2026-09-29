@@ -8,3 +8,9 @@ directory with any static web server.
 The basketball drill library is available at
 [decent.coach/basketball](https://decent.coach/basketball/). Its source, drill
 data, generated lesson pages, and assets live in `basketball/`.
+
+## Environments
+
+- `main` publishes the production site at [decent.coach](https://decent.coach/).
+- `dev` is mirrored to the development Pages site at
+  [dev.decent.coach](https://dev.decent.coach/).
