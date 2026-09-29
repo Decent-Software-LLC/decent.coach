@@ -189,7 +189,7 @@
         overflow: hidden;
         transition: width 180ms ease;
       }
-      .library-collapsed .library { width: 76px; }
+      .library-collapsed .library { width: 76px; cursor: pointer; }
       .library-heading { position: relative; padding: 24px 54px 14px 20px; }
       .library-toggle {
         position: absolute;
@@ -957,6 +957,7 @@
         catalogEntries.push({ title, source: source.label, number: catalogEntries.length + 1 });
       }));
       const workspace = document.querySelector("#workspace");
+      const library = document.querySelector(".library");
       const libraryToggle = document.querySelector("#library-toggle");
 
       function setLibraryCollapsed(collapsed) {
@@ -967,6 +968,10 @@
       }
 
       libraryToggle.addEventListener("click", () => setLibraryCollapsed(!workspace.classList.contains("library-collapsed")));
+      library.addEventListener("click", (event) => {
+        if (event.target.closest("#library-toggle")) return;
+        if (workspace.classList.contains("library-collapsed")) setLibraryCollapsed(false);
+      });
 
       function storedRecentDrills() {
         try {
