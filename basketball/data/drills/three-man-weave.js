@@ -5,6 +5,7 @@
     title: "Three-Player Weave",
     titleLines: ["Three-Player", "Weave"],
     status: "ready",
+    printPdf: "print/three-player-weave.pdf",
     categories: ["Passing", "Transition"],
     summary: "Three players pass ahead and exchange lanes, with each receiver carrying the ball behind the passer into the middle lane.",
     variations: [

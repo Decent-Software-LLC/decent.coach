@@ -7,6 +7,7 @@
     status: "ready",
     categories: ["Defense", "Denial"],
     summary: "A defender reads ball and cutter, meets the flash cut in the lane, and denies an easy catch in the key.",
+    printPdf: "print/bump-the-cutter.pdf",
     variations: [
       "Reposition the coach and cutter to different areas of the offensive half court."
     ],

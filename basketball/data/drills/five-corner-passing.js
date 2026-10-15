@@ -2,6 +2,7 @@
   window.BASKETBALL_DRILLS = window.BASKETBALL_DRILLS || {};
   window.BASKETBALL_DRILLS["five-corner-passing"] = {
     id: "five-corner-passing", title: "Five Corner Passing", titleLines: ["Five Corner", "Passing"], status: "ready",
+    printPdf: "print/five-corner-passing.pdf",
     categories: ["Passing", "Communication"], summary: "Five lines pass next-but-one around a star, then follow each pass through traffic to the receiving line.",
     variations: ["Begin with one ball for newer players.", "Specify the type of pass.", "Reverse direction on the coach's call."],
     pointsOfEmphasis: ["Call a name and show ten fingers.", "Step toward the ball to receive it.", "Use strong passing form and crisp passes."],

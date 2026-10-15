@@ -5,6 +5,7 @@
     title: "Five On Four Plus One",
     titleLines: ["Five On Four", "Plus One"],
     status: "ready",
+    printPdf: "print/five-on-four-plus-one.pdf",
     categories: ["Transition", "Defense", "Advantage"],
     summary: "Five attackers push against four retreating defenders while a delayed fifth defender sprints back into the play.",
     variations: [],
@@ -54,7 +55,7 @@
       },
       {
         title: "Pass and release",
-        description: "The coach passes to an offensive player, and all five attackers immediately fill the lanes and push into transition.",
+        description: "After the coach passes to an offensive player, the defender across from the receiver runs to the baseline and waits for the coach's release before joining the defenders.",
         focus: 29,
         ball: "o3",
         duration: 3000,

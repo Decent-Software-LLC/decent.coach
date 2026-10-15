@@ -2,6 +2,7 @@
   window.BASKETBALL_DRILLS = window.BASKETBALL_DRILLS || {};
   window.BASKETBALL_DRILLS["knockout"] = {
     id:"knockout",title:"Knockout",titleLines:["Knockout"],status:"ready",categories:["Shooting","Rebounding"],summary:"Two shooters race to score, rebound, and return the ball before the trailing shooter makes a basket.",
+    printPdf:"print/knockout.pdf",
     variations:["Start the first shot from the wing or three-point line."],pointsOfEmphasis:["Use correct shooting form.","Do not follow the first shot until it reaches the rim.","Rebound strongly.","Avoid traveling after a missed shot."],
     equipment:{players:5,playersLabel:"All Players",basketballs:2},extraBallIds:["second"],
     court:{type:"half",asset:"assets/courts/basketball-halfcourt.svg",aspectRatio:"1090.86 / 912.61",label:"Half court",startingEnd:"top",overlay:{asset:"assets/basketball-hoop.png",alt:"Aerial basketball hoop and backboard",left:43,top:12,width:14}},

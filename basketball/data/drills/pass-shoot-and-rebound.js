@@ -3,6 +3,7 @@
   window.BASKETBALL_DRILLS["pass-shoot-and-rebound"] = {
     id:"pass-shoot-and-rebound", title:"Pass, Shoot And Rebound", titleLines:["Pass, Shoot", "And Rebound"], status:"ready",
     categories:["Shooting","Passing","Rebounding"], summary:"A three-player shooting sequence connects the rebounder, passer, and shooter before repeating or rotating roles.",
+    printPdf:"print/pass-shoot-and-rebound.pdf",
     variations:["Run for a set time, then rotate roles.","Rotate after every shot.","Require a dribble, relocation, shot fake, or jab step before the shot."],
     pointsOfEmphasis:["Use correct shooting form.","Chin and protect the rebound, then pivot away to pass.","Receive low and ready; pass into the shooting pocket."],
     equipment:{players:3,basketballs:1},

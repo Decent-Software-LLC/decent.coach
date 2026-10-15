@@ -1,7 +1,7 @@
 (function () {
   window.BASKETBALL_DRILLS = window.BASKETBALL_DRILLS || {};
   window.BASKETBALL_DRILLS["ten-fingers"] = {
-    id:"ten-fingers",title:"Ten Fingers",titleLines:["Ten Fingers"],status:"ready",categories:["Cutting","Passing","Shooting"],summary:"Two lines use hard V-cuts, clear targets, accurate passes, and balanced catches before attacking the basket.",
+    id:"ten-fingers",title:"Ten Fingers",titleLines:["Ten Fingers"],status:"ready",printPdf:"print/ten-fingers.pdf",categories:["Cutting","Passing","Shooting"],summary:"Two lines use hard V-cuts, clear targets, accurate passes, and balanced catches before attacking the basket.",
     variations:["Use the full court and finish with a lay-up at the opposite end."],pointsOfEmphasis:["Plant and push off hard on the change of direction.","Show ten fingers and call for the ball.","Catch and face the basket in triple-threat position."],
     equipment:{players:6,playersLabel:"All Players",basketballs:4},extraBallIds:["second"],court:{type:"half",asset:"assets/courts/basketball-halfcourt.svg",aspectRatio:"1090.86 / 912.61",label:"Half court",startingEnd:"top",overlay:{asset:"assets/basketball-hoop.png",alt:"Aerial basketball hoop and backboard",left:43,top:12,width:14}},
     players:[{id:"p1",label:"1",team:"offense"},{id:"p2",label:"2",team:"offense"},{id:"p3",label:"3",team:"offense"},{id:"p4",label:"4",team:"offense"},{id:"p5",label:"5",team:"offense"},{id:"p6",label:"6",team:"offense"}],

@@ -7,6 +7,7 @@
     status: "ready",
     categories: ["Passing", "Defense"],
     summary: "Players pass across a circle while one defender pressures the ball and hunts for a touch or interception.",
+    printPdf: "print/bull-in-the-ring.pdf",
     variations: [
       "Use two or more basketballs.",
       "Place two or more defenders inside the circle.",
@@ -41,7 +42,7 @@
     steps: [
       {
         title: "Form the ring",
-        description: "Players form a wide circle around one defender. Player 1 begins with the ball, and passes may not go to an adjacent player.",
+        description: "Players form a wide circle around one defender. One outside player begins with the ball and may pass to any non-adjacent player around the ring.",
         focus: 50,
         ball: "o1",
         positions: { o1: [50, 24], o2: [33, 31], o3: [23, 47], o4: [29, 68], o5: [50, 78], o6: [71, 68], o7: [77, 47], o8: [67, 31], d1: [50, 50] },
@@ -49,7 +50,7 @@
       },
       {
         title: "Fake, pass, and pressure",
-        description: "Player 1 uses a pass fake, then passes across the circle to Player 3. The defender pressures the ball and attacks the passing lane.",
+        description: "The ball carrier uses a pass fake, then passes to any eligible player around the ring. The defender pressures the ball and attacks the passing lane.",
         focus: 42,
         ball: "o3",
         ballArrival: 0.55,
@@ -61,7 +62,7 @@
       },
       {
         title: "Recover to the next pass",
-        description: "Player 3 quickly passes across the circle to Player 6. The defender recovers, pressures the new ball-handler, and keeps active hands in the lane.",
+        description: "The new ball carrier quickly passes to any other eligible player around the ring. The defender recovers, pressures the ball, and keeps active hands in the lane.",
         focus: 55,
         ball: "o6",
         ballArrival: 0.55,

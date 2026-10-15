@@ -4,6 +4,7 @@
     id: "defensive-shuffle-and-pass", title: "Defensive Shuffle And Pass", titleLines: ["Defensive Shuffle", "And Pass"], status: "ready",
     categories: ["Defense", "Passing", "Footwork"],
     summary: "Three players combine crisp passing with repeated defensive shuffles between two ball-handlers.",
+    printPdf: "print/defensive-shuffle-and-pass.pdf",
     variations: ["Specify the type of pass.", "Count the most completed passes in a set time."],
     pointsOfEmphasis: ["Use correct defensive footwork: wide, then wider.", "Deliver crisp, accurate passes."],
     equipment: { players: 3, basketballs: 2 },
