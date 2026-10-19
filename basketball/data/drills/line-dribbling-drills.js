@@ -2,6 +2,7 @@
   window.BASKETBALL_DRILLS = window.BASKETBALL_DRILLS || {};
   window.BASKETBALL_DRILLS["line-dribbling-drills"] = {
     id:"line-dribbling-drills", title:"Line Dribbling Drills", titleLines:["Line Dribbling", "Drills"], status:"ready",
+    printPdf:"print/line-dribbling-drills.pdf",
     categories:["Dribbling","Ball Handling"], summary:"Players advance in lanes and execute controlled changes of speed, direction, and hand at designated court marks.",
     variations:["Use follow-the-leader, with every player copying the designated leader's moves."],
     pointsOfEmphasis:["Keep the head up and use fingertips, not palms.","Protect the ball and stay low and balanced.","Plant and push off explosively when changing direction."],

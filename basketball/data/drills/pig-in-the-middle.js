@@ -2,6 +2,7 @@
   window.BASKETBALL_DRILLS = window.BASKETBALL_DRILLS || {};
   window.BASKETBALL_DRILLS["pig-in-the-middle"] = {
     id:"pig-in-the-middle",title:"Pig In The Middle",titleLines:["Pig In","The Middle"],status:"ready",categories:["Passing","Defense"],summary:"Two passers protect the ball across a short gap while one defender pressures the ball and tries to earn a deflection.",
+    printPdf:"print/pig-in-the-middle.pdf",
     variations:["Give each passer a three-second limit to release the ball."],pointsOfEmphasis:["Fake a pass to make a pass.","Step into or around the defender to create the passing lane.","The defender calls 'ball' and applies aggressive pressure."],
     equipment:{players:3,basketballs:1},court:{type:"half",asset:"assets/courts/basketball-halfcourt.svg",aspectRatio:"1090.86 / 912.61",label:"Half court",startingEnd:"top"},
     players:[{id:"o1",label:"1",team:"offense"},{id:"o2",label:"2",team:"offense"},{id:"d1",label:"X1",team:"defense"}],

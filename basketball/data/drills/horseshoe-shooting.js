@@ -2,6 +2,7 @@
   window.BASKETBALL_DRILLS = window.BASKETBALL_DRILLS || {};
   window.BASKETBALL_DRILLS["horseshoe-shooting"] = {
     id:"horseshoe-shooting", title:"Horseshoe Shooting", titleLines:["Horseshoe","Shooting"], status:"ready",
+    printPdf:"print/horseshoe-shooting.pdf",
     categories:["Shooting","Passing","Receiving"], summary:"Two baseline lines alternate V-cuts, catches, shots, rebounds, and rotations through the opposite line.",
     variations:["Take one dribble and shoot off the dribble.","Drive hard to the basket instead of shooting.","Add a shot fake before the shot."],
     pointsOfEmphasis:["Cut with a hard change of direction.","Catch in triple-threat position ready to shoot.","Use correct shooting form.","Call for the ball."],

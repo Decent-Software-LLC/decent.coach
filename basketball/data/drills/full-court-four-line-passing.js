@@ -2,6 +2,7 @@
   window.BASKETBALL_DRILLS = window.BASKETBALL_DRILLS || {};
   window.BASKETBALL_DRILLS["full-court-four-line-passing"] = {
     id: "full-court-four-line-passing", title: "Full Court Four Line Passing", titleLines: ["Full Court", "Four Line Passing"], status: "ready",
+    printPdf: "print/full-court-four-line-passing.pdf",
     categories: ["Passing", "Transition"], summary: "Four lanes advance at full speed while crossing passes create traffic before an outside player cuts for a lay-up.",
     variations: ["Pass to the adjacent line for younger players.", "Have outside lines exchange long passes while inside lines exchange shorter passes."],
     pointsOfEmphasis: ["Run at full speed instead of stopping to pass.", "Lead moving receivers.", "Show ten fingers and call a name."],

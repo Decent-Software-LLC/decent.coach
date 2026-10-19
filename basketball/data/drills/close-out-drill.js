@@ -7,6 +7,7 @@
     status: "ready",
     categories: ["Defense", "Footwork"],
     summary: "Defenders close out four perimeter players, react to a jab step, and recover before rotating to the next assignment.",
+    printPdf: "print/close-out-drill.pdf",
     variations: [
       "Practice both bunny-hop and stutter-step closeout methods."
     ],

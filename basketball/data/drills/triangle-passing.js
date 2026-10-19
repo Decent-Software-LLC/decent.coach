@@ -5,6 +5,7 @@
     title: "Triangle Passing",
     titleLines: ["Triangle", "Passing"],
     status: "ready",
+    printPdf: "print/triangle-passing.pdf",
     categories: ["Passing", "Receiving"],
     summary: "Three half-court lines pass in sequence while receivers move to the ball and passers sprint to the end of the receiving line.",
     variations: [

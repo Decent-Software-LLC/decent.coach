@@ -7,6 +7,7 @@
     status: "ready",
     categories: ["Defense", "Footwork"],
     summary: "Defenders mirror a leader's lateral movement while maintaining proper stance, spacing, and quick changes of direction.",
+    printPdf: "print/mirror-drills.pdf",
     variations: [
       "Use the coach-led formation with players staying aligned behind the coach.",
       "Pair players along a court line with one leader and one mirror."

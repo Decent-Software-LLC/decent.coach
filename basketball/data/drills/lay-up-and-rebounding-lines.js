@@ -5,6 +5,7 @@
     title: "Lay-up And Rebounding Lines",
     titleLines: ["Lay-up And", "Rebounding Lines"],
     status: "ready",
+    printPdf: "print/lay-up-and-rebounding-lines.pdf",
     categories: ["Lay-ups", "Rebounding", "Passing"],
     summary: "Two lines work at game speed as one player drives for a lay-up and the opposite line rebounds, outlets, and rotates.",
     variations: [
